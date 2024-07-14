@@ -1,0 +1,10 @@
+import express from "express";
+import { checkAuth } from "../middleware/auth.middleware.js";
+import noteController from "../controller/note.controller.js";
+const noteRouter = express.Router();
+noteRouter.route("/create").post(checkAuth, noteController.create);
+noteRouter.route("/all").get(checkAuth, noteController.getAll);
+noteRouter.route("/e/:id").put(checkAuth, noteController.update);
+noteRouter.route("/g/:id").get(checkAuth, noteController.getOne);
+noteRouter.route("/d/:id").delete(checkAuth, noteController.delete);
+export default noteRouter;
