@@ -7,5 +7,6 @@ const noteSchema = new mongoose.Schema({
     references: "user",
     required: true,
   },
+  createdAt: { type: String, required: true },
 });
 export const note = mongoose.model("note", noteSchema);
