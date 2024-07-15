@@ -15,6 +15,12 @@ const updatePassword = async (req, res) => {
         .json({ message: "User with provided ID does not exist" });
     }
 
+    const samePass = await bcrypt.compare(password, exists.password);
+    if (samePass) {
+      return res
+        .status(400)
+        .json({ message: "New password cannot be same as old password" });
+    }
     const hashed = await bcrypt.hash(password, 10);
     exists.password = hashed;
     await exists.save();

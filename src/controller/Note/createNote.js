@@ -9,7 +9,7 @@ const createNote = async (request, response) => {
     if (!title || !content) {
       response.status(400).json({ message: "missing title or content" });
     }
-    const createdAt = moment().format("LL");
+    const createdAt = moment().format("LLL");
     await note.create({
       title,
       content,
